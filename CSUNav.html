@@ -171,15 +171,20 @@
             var adminimg = '<img src = "Administration.jpg" height="150px" width="150px"/>';
             var ampimg = '<img src = "Amphitheatre.jpg" height="150px" width="150px"/>';
             var bdcaimg = '<img src = "BDC A.jpg" height="150px" width="150px"/>';
+            var bdcbimg = '<img src = "BDC B.jpg" height="150px" width="150px"/>';
+            var chcimg = '<img src = "Child Care.jpg" height="150px" width="150px"/>';
+            var clbimg = '<img src = "Classroom Building.jpg" height="150px" width="150px"/>';
             var dtimg = '<img src = "Theater.jpg" height="150px" width="150px"/>';
             var ddhimg = '<img src = "DDH.jpg" height="150px" width="150px"/>';
             var eduimg = '<img src = "Education.jpg" height="150px" width="150px"/>';
             var enmodimg = '<img src = "Engine Mod.jpg" height="150px" width="150px"/>';
             var facimg = '<img src = "Facilities.jpg" height="150px" width="150px"/>';
+            var hcimg = '<img src = "Humanities Complex.jpg" height="150px" width="150px"/>';
             var icimg = '<img src = "Icardo Center.jpg" height="150px" width="150px"/>';
             var jhacimg = '<img src = "JHAC.jpg" height="150px" width="150px"/>';
             var libimg = '<img src = "Library.jpg" height="150px" width="150px"/>';
             var modeimg = '<img src = "Modular East 3.jpg" height="150px" width="150px"/>';
+            var modwimg = '<img src = "Modular West.jpg" height="150px" width="150px"/>';
             var musicimg = '<img src = "Music Building.jpg" height="150px" width="150px"/>';
             var pakaimg = '<img src = "Parking Lot A.jpg" height="150px" width="150px"/>';
             var pakbimg = '<img src = "Parking Lot B.jpg" height="150px" width="150px"/>';
@@ -193,16 +198,21 @@
             var pakjimg = '<img src = "Parking Lot J.jpg" height="150px" width="150px"/>';
             var pakk1img = '<img src = "Parking Lot K1.jpg" height="150px" width="150px"/>';
             var pakk2img = '<img src = "Parking Lot K2.jpg" height="150px" width="150px"/>';
+            var pakk3img = '<img src = "Parking Lot K3.jpg" height="150px" width="150px"/>';
             var pakjimg = '<img src = "Parking Lot J.jpg" height="150px" width="150px"/>';
             var paklimg = '<img src = "Parking Lot L.jpg" height="150px" width="150px"/>';
             var rcimg = '<img src = "Runner Cafe.jpg" height="150px" width="150px"/>';
+            var sci1img = '<img src = "Science I.jpg" height="150px" width="150px"/>';
             var sci2img = '<img src = "Science II.jpg" height="150px" width="150px"/>';
             var sci3img = '<img src = "Science III.jpg" height="150px" width="150px"/>';
             var srcimg = '<img src = "SRC.jpg" height="150px" width="150px"/>';
+            var shcimg = '<img src = "Student Health Services.jpg" height="150px" width="150px"/>';
             var sUimg = '<img src = "Student Union.jpg" height="150px" width="150px"/>';
             var trimg = '<img src = "Testing Room.jpg" height="150px" width="150px"/>';
             var therimg = '<img src = "Theater.jpg" height="150px" width="150px"/>';
+            var unipimg = '<img src = "University Police.jpg" height="150px" width="150px"/>';
             var vaimg = '<img src = "Visual Arts.jpg" height="150px" width="150px"/>';
+            var wcrimg = '<img src = "Well Core Repository.jpg" height="150px" width="150px"/>';
             
 
             var marker0 = L.marker(data[0].loc, {icon: schoolIcon}).addTo(map);
@@ -214,9 +224,9 @@
             var marker3 = L.marker(data[3].loc, {icon: schoolIcon}).addTo(map);
             var popup3 = marker3.bindPopup('<b> Amphitheatre </b>'+ '</br >' + ampimg)
             var marker4 = L.marker(data[4].loc, {icon: schoolIcon}).addTo(map);
-            var popup4 = marker4.bindPopup('<b> Business Development Center A' + '</br >' + bdcaimg)
+            var popup4 = marker4.bindPopup('<b> Business Development Center A </b>' + '</br >' + bdcaimg)
             var marker5 = L.marker(data[5].loc, {icon: schoolIcon}).addTo(map);
-            var popup5 = marker5.bindPopup('<b> Business Development Center B </b><br /> I am popup 5')
+            var popup5 = marker5.bindPopup('<b> Business Development Center B </b>' + '</br >' + bdcbimg)
             var marker6 = L.marker(data[6].loc, {icon: schoolIcon}).addTo(map);
             var popup6 = marker6.bindPopup('<b> Business Development Center C </b><br /> I am popup 6')
             var marker7 = L.marker(data[7].loc, {icon: schoolIcon}).addTo(map);
@@ -226,9 +236,9 @@
             var marker9 = L.marker(data[9].loc, {icon: schoolIcon}).addTo(map);
             var popup9 = marker9.bindPopup('<b> Central Plant Operations </b><br /> I am popup 9')
             var marker10 = L.marker(data[10].loc, {icon: schoolIcon}).addTo(map);
-            var popup10 = marker10.bindPopup('<b> Child Care </b><br /> I am popup 10')
+            var popup10 = marker10.bindPopup('<b> Child Care </b>' + '</br >' + chcimg)
             var marker11 = L.marker(data[11].loc, {icon: schoolIcon}).addTo(map);
-            var popup11 = marker11.bindPopup('<b> Classroom Building </b><br /> I am popup 11')
+            var popup11 = marker11.bindPopup('<b> Classroom Building </b>' + '</br >' + clbimg)
             var marker12 = L.marker(data[12].loc, {icon: schoolIcon}).addTo(map);
             var popup12 = marker12.bindPopup('<b> Dore Theater </b>' + '</br >' + dtimg)
             var marker13 = L.marker(data[13].loc, {icon: schoolIcon}).addTo(map);
@@ -240,7 +250,7 @@
             var marker16 = L.marker(data[16].loc, {icon: schoolIcon}).addTo(map);
             var popup16 = marker16.bindPopup('<b> Facilities </b>' + '</br >' + facimg)
             var marker17 = L.marker(data[17].loc, {icon: schoolIcon}).addTo(map);
-            var popup17 = marker17.bindPopup('<b> Humanities Complex </b><br /> I am popup 17')
+            var popup17 = marker17.bindPopup('<b> Humanities Complex </b>' + '</br >' + hcimg)
             var marker18 = L.marker(data[18].loc, {icon: studentIcon}).addTo(map);
             var popup18 = marker18.bindPopup('<b> Icardo Center </b>' + '</br >' + icimg)
             var marker19 = L.marker(data[19].loc, {icon: schoolIcon}).addTo(map);
@@ -250,7 +260,7 @@
             var marker21 = L.marker(data[21].loc, {icon: schoolIcon}).addTo(map);
             var popup21 = marker21.bindPopup('<b> Modular East 3 </b>' + '</br >' + modeimg)
             var marker22 = L.marker(data[22].loc, {icon: schoolIcon}).addTo(map);
-            var popup22 = marker22.bindPopup('<b> Modular West </b><br /> I am popup 22')
+            var popup22 = marker22.bindPopup('<b> Modular West </b>' + '</br >' + modwimg)
             var marker23 = L.marker(data[23].loc, {icon: schoolIcon}).addTo(map);
             var popup23 = marker23.bindPopup('<b> Music Building </b>' + '</br >' + musicimg)
             var marker24 = L.marker(data[24].loc, {icon: parkingIcon}).addTo(map);
@@ -278,7 +288,7 @@
             var marker35 = L.marker(data[35].loc, {icon: parkingIcon}).addTo(map);
             var popup35 = marker35.bindPopup('<b> Parking Lot K2 </b>' + '</br >' + pakk2img)
             var marker36 = L.marker(data[36].loc, {icon: parkingIcon}).addTo(map);
-            var popup36 = marker36.bindPopup('<b> Parking Lot K3 </b><br /> I am popup 36')
+            var popup36 = marker36.bindPopup('<b> Parking Lot K3 </b>' + '</br >' + pakk3img)
             var marker37 = L.marker(data[37].loc, {icon: parkingIcon}).addTo(map);
             var popup37 = marker37.bindPopup('<b> Parking Lot L </b>' + '</br >' + paklimg)
             var marker38 = L.marker(data[38].loc, {icon: schoolIcon}).addTo(map);
@@ -290,13 +300,13 @@
             var marker41 = L.marker(data[41].loc, {icon: studentIcon}).addTo(map);
             var popup41 = marker41.bindPopup('<b> Runner Cafe </b>' + '</br >' + rcimg)
             var marker42 = L.marker(data[42].loc, {icon: schoolIcon}).addTo(map);
-            var popup42 = marker42.bindPopup('<b> Science I </b><br /> I am popup 42')
+            var popup42 = marker42.bindPopup('<b> Science I </b>' + '</br >' + sci1img)
             var marker43 = L.marker(data[43].loc, {icon: schoolIcon}).addTo(map);
             var popup43 = marker43.bindPopup('<b> Science II </b>' + '</br >' + sci2img)
             var marker44 = L.marker(data[44].loc, {icon: schoolIcon}).addTo(map);
             var popup44 = marker44.bindPopup('<b> Science III </b>' + '</br >' + sci3img)
             var marker45 = L.marker(data[45].loc, {icon: firstaidIcon}).addTo(map);
-            var popup45 = marker45.bindPopup('<b> Student Health Services </b><br /> I am popup 45')
+            var popup45 = marker45.bindPopup('<b> Student Health Services </b>' + '</br >' + shcimg)
             var marker46 = L.marker(data[46].loc, {icon: studentIcon}).addTo(map);
             var popup46 = marker46.bindPopup('<b> Student Recreation Center </b>' + '</br >' + srcimg)
             var marker47 = L.marker(data[47].loc, {icon: schoolIcon}).addTo(map);
@@ -308,13 +318,13 @@
             var marker50 = L.marker(data[50].loc, {icon: schoolIcon}).addTo(map);
             var popup50 = marker50.bindPopup('<b> University Advancement </b><br /> I am popup 50')
             var marker51 = L.marker(data[51].loc, {icon: policeIcon}).addTo(map);
-            var popup51 = marker51.bindPopup('<b> University Police Department  </b><br /> I am popup 51')
+            var popup51 = marker51.bindPopup('<b> University Police Department  </b>' + '</br >' + unipimg)
             var marker52 = L.marker(data[52].loc, {icon: schoolIcon}).addTo(map);
             var popup52 = marker52.bindPopup('<b> Visual Arts </b>' + '</br >' + vaimg)
             var marker53 = L.marker(data[53].loc, {icon: schoolIcon}).addTo(map);
             var popup53 = marker53.bindPopup('<b> Walter Stiern Library </b>' + '</br >' + libimg)
             var marker54 = L.marker(data[54].loc, {icon: schoolIcon}).addTo(map);
-            var popup54 = marker54.bindPopup('<b> Well Core Repository </b><br /> I am popup 54')
+            var popup54 = marker54.bindPopup('<b> Well Core Repository </b>' + '</br >' + wcrimg)
             
 
             //---------get user location every three seconds
