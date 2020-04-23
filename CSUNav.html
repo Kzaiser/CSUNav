@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="./leaflet/leaflet.css" />
+    <link rel="stylesheet" href="leaflet-search.min.css"/>
     <link rel="stylesheet" href="./leaflet/plugins/leaflet-routing-machine.css" />
     <link rel="stylesheet" type="text/css"
         href="https://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.5/esri-leaflet-geocoder.css">
@@ -27,8 +28,10 @@
   cursor: pointer;
 }
 
-.dropbtn:hover, .dropbtn:focus {
-  background-color: #3e8e41;
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 #myInput {
@@ -88,9 +91,10 @@
         <script src="./leaflet/leaflet.js"></script>
         <script src="./leaflet/plugins/leaflet-routing-machine.js"></script>
         <script src="../../leaflet-indoor.js"></script>
+        <script type="text/javascript" src="tabletop.min.js"></script>
         <script src="https://cdn-geoweb.s3.amazonaws.com/esri-leaflet/0.0.1-beta.5/esri-leaflet.js"></script>
-        <script
-            src="https://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.5/esri-leaflet-geocoder.js"></script>
+        <script type="text/javascript" src="leaflet-search.min.js"></script>
+        <script src="https://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.5/esri-leaflet-geocoder.js"></script>
         <script type="text/javascript">
 
 
@@ -401,7 +405,7 @@
             //---------get user location every three seconds
             var current_position, current_accuracy, destination;
             var flag = 0;
-
+            //function initializeLocate() {
             var routing = L.Routing.control({
                 waypoints: [null
                     //L.latLng(current_position.getLatLng()),
@@ -411,38 +415,42 @@
                 show: false
             }).addTo(map);
 
+            
+                function onLocationFound(e) {
+                    
+                    // if position defined, then remove the existing position marker and accuracy circle from the map
+                    if (current_position) {
+                        map.removeLayer(current_position);
+                        map.removeLayer(current_accuracy);
+                    }
 
-            function onLocationFound(e) {
-                // if position defined, then remove the existing position marker and accuracy circle from the map
-                if (current_position) {
-                    map.removeLayer(current_position);
-                    map.removeLayer(current_accuracy);
+                    var radius = e.accuracy / 6;
+
+                    current_position = L.marker(e.latlng).addTo(map);
+
+                    current_accuracy = L.circle(e.latlng, radius).addTo(map);
+
+                    routing.spliceWaypoints(0, 1, current_position.getLatLng());
+                    routing.spliceWaypoints(1, 1, destination);
                 }
 
-                var radius = e.accuracy / 6;
 
-                current_position = L.marker(e.latlng).addTo(map);
+                function onLocationError(e) {
+                    alert(e.message);
+                }
 
-                current_accuracy = L.circle(e.latlng, radius).addTo(map);
+                map.on('locationfound', onLocationFound);
+                map.on('locationerror', onLocationError);
 
-                routing.spliceWaypoints(0, 1, current_position.getLatLng());
-                routing.spliceWaypoints(1, 1, destination);
-            }
+                // map.locate({setView: true, maxZoom: 16, watch: true});
+                // wrap map.locate in a function    
+                map.locate({ 
+                    watch: true, 
+                    setView: false 
+                    });
 
-
-            function onLocationError(e) {
-                alert(e.message);
-            }
-
-            map.on('locationfound', onLocationFound);
-            map.on('locationerror', onLocationError);
-
-            // map.locate({setView: true, maxZoom: 16, watch: true});
-            // wrap map.locate in a function    
-            function locate() {
-                map.locate({ watch: true, setView: false });
-            }
-
+            //}
+            //initializeLocate();
             // call locate every 3 seconds... forever
             //setInterval(locate, 3000);
             //-----------end user location
