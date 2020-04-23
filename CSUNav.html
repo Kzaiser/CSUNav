@@ -16,13 +16,18 @@
         .leaflet-control-container .leaflet-routing-container-hide {
             display: none;
         }
-        
-        <!-- Map -->
-        #map {
-            width: 100%
-            height: 100%
+
+        img{
+            max-width: 100%;
+            max-height: 100%;
+            display: block; /* remove extra space below image */
         }
-        <! -- Circular Button -->
+        
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+
         .button {
         background-color: gray;
         border: none;
@@ -38,7 +43,7 @@
 
         .cbtn {border-radius:50%;}
 
-        < !--Search Bar-->
+        
         .dropbtn {
         background-color: #4CAF50;
         color: white;
@@ -58,43 +63,7 @@
             min-height: 100%;
         }
 
-        #myInput {
-        box-sizing: border-box;
-        background-position: 14px 12px;
-        background-repeat: no-repeat;
-        font-size: 16px;
-        padding: 14px 20px 12px 45px;
-        border: none;
-        border-bottom: 1px solid #ddd;
-        }
 
-        #myInput:focus {outline: 3px solid #ddd;}
-
-        .dropdown {
-        position: relative;
-        display: inline-block;
-        }
-
-        .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f6f6f6;
-        min-width: 230px;
-        overflow: auto;
-        border: 1px solid #ddd;
-        z-index: 1;
-        }
-
-        .dropdown-content a {
-        color: black;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-        }
-
-        .dropdown a:hover {background-color: #ddd;}
-
-        .show {display: block;}
     </style>
 </head>
 
@@ -108,8 +77,24 @@
             <p>Interactive Campus Navigation</p>
         </header>
         
-        <div id="map" class="img-responsive map" style="width: auto; height: 550px; margin: auto; ">
-        </div>
+        <!--<input id="UserInputImage" type="text" value="Enter Room Number"/>
+    <div class='button' onclick="selection()">click</div>-->
+
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div id="map" class="img-responsive map" style="width: auto; height: 550px; margin: auto; ">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div id="floorplantext">
+                </div>
+                <div id="floorplanimage">
+                    <img src="./floorplans/default.jpg"></img>
+                </div>
+            </div>
+          </div>
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <script src="./leaflet/leaflet.js"></script>
@@ -117,6 +102,37 @@
         <script src="https://cdn-geoweb.s3.amazonaws.com/esri-leaflet/0.0.1-beta.5/esri-leaflet.js"></script>
         <script src="https://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.5/esri-leaflet-geocoder.js"></script>
         <script type="text/javascript">
+
+function change() {
+        var text = "";
+        var image = "";
+        var answers = document.getElementById("UserInputImage").value;
+        switch(answers) {
+        case "100":
+        text = "Science 3 room 100";
+        image='<img src="./floorplans/sci3-100.jpg"></img>';
+        break;
+        case "101":
+        text = "Science 3 room 101";
+        image='<img src="./floorplans/sci3-101.jpg"></img>';
+        break;
+        case "102":
+        text = "Science 3 room 102";
+        image='<img src="./floorplans/sci3-102.jpg"></img>';
+        break;
+
+        default:
+        text = "room not found";
+        }
+        document.getElementById("floorplantext").innerHTML = text;
+        document.getElementById("floorplanimage").innerHTML = image;
+        }
+
+        function selection() {
+            selectElement = document.querySelector('#select1');
+            output = selectElement.options[selectElement.selectedIndex].value;
+            document.querySelector('.output').textContent = output;
+        }
 
 
             var data = [
@@ -493,7 +509,7 @@
             var legend = L.control({ position: 'topright' });
             legend.onAdd = function (map) {
                 var div = L.DomUtil.create('div', 'info legend');
-                div.innerHTML = '<select onchange="selectDestination(this.value);">' +
+                div.innerHTML = '<select id="select1" onchange="selectDestination(this.value);">' +
                     '<option value="dest">Destination</option>' +
                     '<option value="Administration">Administration</option>' +
                     '<option value="Administration East">Administration East</option>' +
@@ -786,31 +802,16 @@
 
 
         </script>
-<!--<div class="dropdown">
-        <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-        <div id="myDropdown" class="dropdown-content">
-            <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-            <a href="#about">About</a>
-            <a href="#base">Base</a>
-            <a href="#blog">Blog</a>
-            <a href="#contact">Contact</a>
-            <a href="#custom">Custom</a>
-            <a href="#support">Support</a>
-            <a href="#tools">Tools</a>
-        </div>
-        </div>-->
-
-    <script>
-        function showimage() {
-            var sourceofPicture = "./floorplans/sci3-100.jpg"
-            var img = document.getElementById('bigpic')
-            img.src = sourceofPicture.replace('90x90', '225x225');
-            img.style.display = "block";
-        }
-    </script>
-    <img style="display:none;" id="bigpic" src="bigpic" />
-    <button onclick="showimage()" class="button button1">Press</button> 
         
+<input id="UserInputImage" type="text" placeholder="Enter Room Number"/>
+    <div class='button' onclick="change()">click</div>
+
+    <p> The value of the selected option is:
+        <span class="output"></span>
+    </p>
+
+    <button onclick="selection()">
+        Check option</button>
 
 </body>
 
