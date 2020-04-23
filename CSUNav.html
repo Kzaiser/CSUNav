@@ -29,15 +29,15 @@
         }
 
         .button {
-        background-color: gray;
-        border: none;
-        color: white;
-        padding: 20px;
+        background-color: white;
+        border: 2px solid black;
+        color: black;
+        padding: 10px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
+        font-size: 12px;
+        margin: 2px 2px;
         cursor: pointer;
         }
 
@@ -77,9 +77,71 @@
             <p>Interactive Campus Navigation</p>
         </header>
         
-        <!--<input id="UserInputImage" type="text" value="Enter Room Number"/>
-    <div class='button' onclick="selection()">click</div>-->
+        
+    <div class="w3-bar w3-gray">
+            <select style="margin: 10px;" id="select1" onchange="selectDestination(this.value);"> +
+                    <option value="dest">Destination</option>
+                    <option value="Administration">Administration</option>
+                    <option value="Administration East">Administration East</option>
+                    <option value="Administration West">Administration West</option>
+                    <option value="Amphitheatre">Amphitheatre</option>
+                    <option value="Business Development Center A">Business Development Center A</option>
+                    <option value="Business Development Center B">Business Development Center B</option>
+                    <option value="Business Development Center C">Business Development Center C</option>
+                    <option value="Business Development Center D">Business Development Center D</option>
+                    <option value="Business Development Center E">Business Development Center E</option>
+                    <option value="Central Plant Operations">Central Plant Operations</option>
+                    <option value="Child Care">Child Care</option>
+                    <option value="Classroom Building">Classroom Building</option>
+                    <option value="Dore Theatre">Dore Theatre</option>
+                    <option value="Dorothy Donahoe Hall">Dorothy Donahoe Hall</option>
+                    <option value="Education Building">Education Building</option>
+                    <option value="Engineering Modulars">Engineering Modulars</option>
+                    <option value="Facilities">Facilities</option>
+                    <option value="Humanities Complex">Humanities Complex</option>
+                    <option value="Icardo Center">Icardo Center</option>
+                    <option value="J. Antonio Sports Center">J. Antonio Sports Center</option>
+                    <option value="J.R. Hillman Aquatic Center">J.R. Hillman Aquatic Center</option>
+                    <option value="Modular East 3">Modular East 3</option>
+                    <option value="Modular West">Modular West</option>
+                    <option value="Music Building">Music Building</option>
+                    <option value="Parking Lot A">Parking Lot A</option>
+                    <option value="Parking Lot B">Parking Lot B</option>
+                    <option value="Parking Lot C">Parking Lot C</option>
+                    <option value="Parking Lot D">Parking Lot D</option>
+                    <option value="Parking Lot E">Parking Lot E</option>
+                    <option value="Parking Lot F">Parking Lot F</option>
+                    <option value="Parking Lot G">Parking Lot G</option>
+                    <option value="Parking Lot H">Parking Lot H</option>
+                    <option value="Parking Lot I">Parking Lot I</option>
+                    <option value="Parking Lot J">Parking Lot J</option>
+                    <option value="Parking Lot K1">Parking Lot K1</option>
+                    <option value="Parking Lot K2">Parking Lot K2</option>
+                    <option value="Parking Lot K3">Parking Lot K3</option>
+                    <option value="Parking Lot L">Parking Lot L</option>
+                    <option value="Performing Arts">Performing Arts</option>
+                    <option value="Physical Education">Physical Education</option>
+                    <option value="Romberg Nursing Center">Romberg Nursing Center</option>
+                    <option value="Runner Cafe">Runner Cafe</option>
+                    <option value="Science 1">Science 1</option>
+                    <option value="Science 2">Science 2</option>
+                    <option value="Science 3">Science 3</option>
+                    <option value="Student Health Services">Student Health Services</option>
+                    <option value="Student Recreation Center">Student Recreation Center</option>
+                    <option value="Student Services">Student Services</option>
+                    <option value="Student Union">Student Union</option>
+                    <option value="Testing Room">Testing Room</option>
+                    <option value="University Advancement">University Advancement</option>
+                    <option value="University Police">University Police</option>
+                    <option value="Visual Arts">Visual Arts</option>
+                    <option value="Walter Stiern Library">Walter Stiern Library</option>
+                    <option value="Well Core Repository">Well Core Repository</option>
+                </select>
+                <div style="float:right" align="right" class='button' onclick="change()">Search</div>
+                <input style="margin: 10px; float:right" id="UserInputImage" type="text" placeholder="Enter Room Number"/>
+    </div>
 
+    <span class="output"></span>
 
         <div class="row">
             <div class="col-sm-6">
@@ -107,31 +169,462 @@ function change() {
         var text = "";
         var image = "";
         var answers = document.getElementById("UserInputImage").value;
-        switch(answers) {
-        case "100":
-        text = "Science 3 room 100";
-        image='<img src="./floorplans/sci3-100.jpg"></img>';
-        break;
-        case "101":
-        text = "Science 3 room 101";
-        image='<img src="./floorplans/sci3-101.jpg"></img>';
-        break;
-        case "102":
-        text = "Science 3 room 102";
-        image='<img src="./floorplans/sci3-102.jpg"></img>';
-        break;
+        var buildingselect = selection();
+        if(buildingselect == "Science 3") {
+            switch(answers) {
+                case "100":
+                    text = "Science 3 room 100";
+                    image='<img src="./floorplans/sci3-100.jpg"></img>';
+                    break;
+                case "101":
+                    text = "Science 3 room 101";
+                    image='<img src="./floorplans/sci3-101.jpg"></img>';
+                    break;
+                case "102":
+                    text = "Science 3 room 102";
+                    image='<img src="./floorplans/sci3-102.jpg"></img>';
+                    break;
+                case "103":
+                    text = "Science 3 room 103";
+                    image='<img src="./floorplans/sci3-103.jpg"></img>';
+                    break;
+                case "104":
+                    text = "Science 3 room 104";
+                    image='<img src="./floorplans/sci3-104.jpg"></img>';
+                    break;
+                case "105":
+                    text = "Science 3 room 105";
+                    image='<img src="./floorplans/sci3-105.jpg"></img>';
+                    break;
+                case "106":
+                    text = "Science 3 room 106";
+                    image='<img src="./floorplans/sci3-106.jpg"></img>';
+                    break;
+                case "107":
+                    text = "Science 3 room 107";
+                    image='<img src="./floorplans/sci3-107.jpg"></img>';
+                    break;
+                case "108":
+                    text = "Science 3 room 108";
+                    image='<img src="./floorplans/sci3-108.jpg"></img>';
+                    break;
+                case "111":
+                    text = "Science 3 room 111";
+                    image='<img src="./floorplans/sci3-111.jpg"></img>';
+                    break;
+                case "112":
+                    text = "Science 3 room 112";
+                    image='<img src="./floorplans/sci3-112.jpg"></img>';
+                    break;
+                case "113":
+                    text = "Science 3 room 113";
+                    image='<img src="./floorplans/sci3-113.jpg"></img>';
+                    break;
+                case "114":
+                    text = "Science 3 room 114";
+                    image='<img src="./floorplans/sci3-114.jpg"></img>';
+                    break;
+                case "115":
+                    text = "Science 3 room 115";
+                    image='<img src="./floorplans/sci3-115.jpg"></img>';
+                    break;
+                case "116":
+                    text = "Science 3 room 116";
+                    image='<img src="./floorplans/sci3-117.jpg"></img>';
+                    break;
+                case "117":
+                    text = "Science 3 room 117";
+                    image='<img src="./floorplans/sci3-117.jpg"></img>';
+                    break;
+                case "118":
+                    text = "Science 3 room 118";
+                    image='<img src="./floorplans/sci3-118.jpg"></img>';
+                    break;
+                case "119":
+                    text = "Science 3 room 119";
+                    image='<img src="./floorplans/sci3-119.jpg"></img>';
+                    break;
+                case "120":
+                    text = "Science 3 room 120";
+                    image='<img src="./floorplans/sci3-120.jpg"></img>';
+                    break;
+                case "121":
+                    text = "Science 3 room 121";
+                    image='<img src="./floorplans/sci3-121.jpg"></img>';
+                    break;
+                case "122":
+                    text = "Science 3 room 122";
+                    image='<img src="./floorplans/sci3-122.jpg"></img>';
+                    break;
+                case "123":
+                    text = "Science 3 room 123";
+                    image='<img src="./floorplans/sci3-123.jpg"></img>';
+                    break;
+                case "124":
+                    text = "Science 3 room 124";
+                    image='<img src="./floorplans/sci3-124.jpg"></img>';
+                    break;
+                case "125":
+                text = "Science 3 room 125";
+                image='<img src="./floorplans/sci3-125.jpg"></img>';
+                break;
+                case "126":
+                text = "Science 3 room 126";
+                image='<img src="./floorplans/sci3-126.jpg"></img>';
+                break;
+                case "127":
+                text = "Science 3 room 127";
+                image='<img src="./floorplans/sci3-127.jpg"></img>';
+                break;
+                case "128":
+                text = "Science 3 room 128";
+                image='<img src="./floorplans/sci3-128.jpg"></img>';
+                break;
+                case "129":
+                text = "Science 3 room 129";
+                image='<img src="./floorplans/sci3-129.jpg"></img>';
+                break;
+                case "130":
+                text = "Science 3 room 130";
+                image='<img src="./floorplans/sci3-130.jpg"></img>';
+                break;
+                case "131":
+                text = "Science 3 room 131";
+                image='<img src="./floorplans/sci3-131.jpg"></img>';
+                break;
+                case "132":
+                text = "Science 3 room 132";
+                image='<img src="./floorplans/sci3-132.jpg"></img>';
+                break;
+                case "300":
+                text = "Science 3 room 300";
+                image='<img src="./floorplans/sci3-300.jpg"></img>';
+                break;
+                case "301":
+                text = "Science 3 room 301";
+                image='<img src="./floorplans/sci3-301.jpg"></img>';
+                break;
+                case "302":
+                text = "Science 3 room 302";
+                image='<img src="./floorplans/sci3-302.jpg"></img>';
+                break;
+                case "303":
+                text = "Science 3 room 303";
+                image='<img src="./floorplans/sci3-303.jpg"></img>';
+                break;
+                case "304":
+                text = "Science 3 room 304";
+                image='<img src="./floorplans/sci3-304.jpg"></img>';
+                break;
+                case "305":
+                text = "Science 3 room 305";
+                image='<img src="./floorplans/sci3-305.jpg"></img>';
+                break;
+                case "306":
+                text = "Science 3 room 306";
+                image='<img src="./floorplans/sci3-306.jpg"></img>';
+                break;
+                case "307":
+                text = "Science 3 room 307";
+                image='<img src="./floorplans/sci3-307.jpg"></img>';
+                break;
+                case "308":
+                text = "Science 3 room 308";
+                image='<img src="./floorplans/sci3-308.jpg"></img>';
+                break;
+                case "309":
+                text = "Science 3 room 309";
+                image='<img src="./floorplans/sci3-309.jpg"></img>';
+                break;
+                case "310":
+                text = "Science 3 room 310";
+                image='<img src="./floorplans/sci3-310.jpg"></img>';
+                break;
+                case "311":
+                text = "Science 3 room 311";
+                image='<img src="./floorplans/sci3-311.jpg"></img>';
+                break; 
+                case "312":
+                text = "Science 3 room 312";
+                image='<img src="./floorplans/sci3-312.jpg"></img>';
+                break;
+                case "313":
+                text = "Science 3 room 313";
+                image='<img src="./floorplans/sci3-313.jpg"></img>';
+                break;
+                case "314":
+                text = "Science 3 room 314";
+                image='<img src="./floorplans/sci3-314.jpg"></img>';
+                break;
+                case "315":
+                text = "Science 3 room 315";
+                image='<img src="./floorplans/sci3-315.jpg"></img>';
+                break;
+                case "316":
+                text = "Science 3 room 316";
+                image='<img src="./floorplans/sci3-316.jpg"></img>';
+                break;
+                case "317":
+                text = "Science 3 room 317";
+                image='<img src="./floorplans/sci3-317.jpg"></img>';
+                break;
+                case "318":
+                text = "Science 3 room 318";
+                image='<img src="./floorplans/sci3-318.jpg"></img>';
+                break;
+                case "319":
+                text = "Science 3 room 319";
+                image='<img src="./floorplans/sci3-319.jpg"></img>';
+                break;
+                case "320":
+                text = "Science 3 room 320";
+                image='<img src="./floorplans/sci3-320.jpg"></img>';
+                break;
+                case "321":
+                text = "Science 3 room 321";
+                image='<img src="./floorplans/sci3-321.jpg"></img>';
+                break;
+                case "322":
+                text = "Science 3 room 322";
+                image='<img src="./floorplans/sci3-322.jpg"></img>';
+                break;
+                case "323":
+                text = "Science 3 room 323";
+                image='<img src="./floorplans/sci3-323.jpg"></img>';
+                break;
+                case "324":
+                text = "Science 3 room 324";
+                image='<img src="./floorplans/sci3-324.jpg"></img>';
+                break;
+                case "325":
+                text = "Science 3 room 325";
+                image='<img src="./floorplans/sci3-325.jpg"></img>';
+                break;
+                case "326":
+                text = "Science 3 room 326";
+                image='<img src="./floorplans/sci3-326.jpg"></img>';
+                break;
+                case "327":
+                text = "Science 3 room 327";
+                image='<img src="./floorplans/sci3-327.jpg"></img>';
+                break;
+                case "328":
+                text = "Science 3 room 328";
+                image='<img src="./floorplans/sci3-328.jpg"></img>';
+                break;
+                case "329":
+                text = "Science 3 room 329";
+                image='<img src="./floorplans/sci3-329.jpg"></img>';
+                break;
+                case "330":
+                text = "Science 3 room 330";
+                image='<img src="./floorplans/sci3-330.jpg"></img>';
+                break;
+                case "331":
+                text = "Science 3 room 331";
+                image='<img src="./floorplans/sci3-331.jpg"></img>';
+                break;
+                case "332":
+                text = "Science 3 room 332";
+                image='<img src="./floorplans/sci3-332.jpg"></img>';
+                break;
+                case "333":
+                text = "Science 3 room 333";
+                image='<img src="./floorplans/sci3-333.jpg"></img>';
+                break;
+                case "334":
+                text = "Science 3 room 334";
+                image='<img src="./floorplans/sci3-334.jpg"></img>';
+                break;
+                case "335":
+                text = "Science 3 room 335";
+                image='<img src="./floorplans/sci3-335.jpg"></img>';
+                break;
+                case "336":
+                text = "Science 3 room 336";
+                image='<img src="./floorplans/sci3-336.jpg"></img>';
+                break;
+                case "337":
+                text = "Science 3 room 337";
+                image='<img src="./floorplans/sci3-337.jpg"></img>';
+                break;
+                case "338":
+                text = "Science 3 room 338";
+                image='<img src="./floorplans/sci3-338.jpg"></img>';
+                break;
+                case "339":
+                text = "Science 3 room 339";
+                image='<img src="./floorplans/sci3-339.jpg"></img>';
+                break;
+                case "340":
+                text = "Science 3 room 340";
+                image='<img src="./floorplans/sci3-340.jpg"></img>';
+                break;
+                case "341":
+                text = "Science 3 room 341";
+                image='<img src="./floorplans/sci3-341.jpg"></img>';
+                break;
+                default:
+                    text = "room not found";
+                    break;
+            }
+        }
+        else if(buildingselect == "Science 1") {
+            switch(answers) {
+                case "101a":
+                    text = "Science 1 room 101a";
+                    image='<img src="./floorplans/sci1-101a.jpg"></img>';
+                    break;
+                case "101b":
+                    text = "Science 1 room 101b";
+                    image='<img src="./floorplans/sci1-101b.jpg"></img>';
+                    break;
+                case "102":
+                    text = "Science 1 room 102";
+                    image='<img src="./floorplans/sci1-102.jpg"></img>';
+                    break;
+                case "103":
+                    text = "Science 1 room 103";
+                    image='<img src="./floorplans/sci1-103.jpg"></img>';
+                    break; 
+                case "104a":
+                    text = "Science 1 room 104a";
+                    image='<img src="./floorplans/sci1-104a.jpg"></img>';
+                    break;
+                    case "104b":
+                    text = "Science 1 room 104b";
+                    image='<img src="./floorplans/sci1-104b.jpg"></img>';
+                    break; 
+                    case "104c":
+                    text = "Science 1 room 104c";
+                    image='<img src="./floorplans/sci1-104c.jpg"></img>';
+                    break; 
+                    case "114a":
+                    text = "Science 1 room 114a";
+                    image='<img src="./floorplans/sci1-114a.jpg"></img>';
+                    break; 
+                    case "114b":
+                    text = "Science 1 room 114b";
+                    image='<img src="./floorplans/sci1-114b.jpg"></img>';
+                    break; 
+                    case "114c":
+                    text = "Science 1 room 114c";
+                    image='<img src="./floorplans/sci1-114c.jpg"></img>';
+                    break; 
+                    case "114d":
+                    text = "Science 1 room 114d";
+                    image='<img src="./floorplans/sci1-114d.jpg"></img>';
+                    break; 
+                    case "114e":
+                    text = "Science 1 room 114e";
+                    image='<img src="./floorplans/sci1-114e.jpg"></img>';
+                    break; 
+                    case "114f":
+                    text = "Science 1 room 114f";
+                    image='<img src="./floorplans/sci1-114f.jpg"></img>';
+                    break; 
+                    case "115":
+                    text = "Science 1 room 115";
+                    image='<img src="./floorplans/sci1-115.jpg"></img>';
+                    break; 
+                    case "116":
+                    text = "Science 1 room 116";
+                    image='<img src="./floorplans/sci1-116.jpg"></img>';
+                    break; 
+                    case "117":
+                    text = "Science 1 room 117";
+                    image='<img src="./floorplans/sci1-117.jpg"></img>';
+                    break; 
+                    case "118":
+                    text = "Science 1 room 118";
+                    image='<img src="./floorplans/sci1-118.jpg"></img>';
+                    break; 
+                    case "119":
+                    text = "Science 1 room 119";
+                    image='<img src="./floorplans/sci1-119.jpg"></img>';
+                    break; 
+                    case "120":
+                    text = "Science 1 room 120";
+                    image='<img src="./floorplans/sci1-120.jpg"></img>';
+                    break; 
+                    case "125":
+                    text = "Science 1 room 125";
+                    image='<img src="./floorplans/sci1-125.jpg"></img>';
+                    break; 
+                    case "126":
+                    text = "Science 1 room 126";
+                    image='<img src="./floorplans/sci1-126.jpg"></img>';
+                    break; 
+                    case "127":
+                    text = "Science 1 room 127";
+                    image='<img src="./floorplans/sci1-127.jpg"></img>';
+                    break; 
+                    case "128":
+                    text = "Science 1 room 128";
+                    image='<img src="./floorplans/sci1-128.jpg"></img>';
+                    break; 
+                    case "129":
+                    text = "Science 1 room 129";
+                    image='<img src="./floorplans/sci1-129.jpg"></img>';
+                    break; 
+                    case "130":
+                    text = "Science 1 room 130";
+                    image='<img src="./floorplans/sci1-130.jpg"></img>';
+                    break; 
+                    case "131":
+                    text = "Science 1 room 131";
+                    image='<img src="./floorplans/sci1-131.jpg"></img>';
+                    break; 
+                    case "132":
+                    text = "Science 1 room 132";
+                    image='<img src="./floorplans/sci1-132.jpg"></img>';
+                    break; 
+                    case "133":
+                    text = "Science 1 room 133";
+                    image='<img src="./floorplans/sci1-133.jpg"></img>';
+                    break; 
+                    case "134":
+                    text = "Science 1 room 134";
+                    image='<img src="./floorplans/sci1-134.jpg"></img>';
+                    break; 
+                    case "144":
+                    text = "Science 1 room 144";
+                    image='<img src="./floorplans/sci1-144.jpg"></img>';
+                    break; 
+                    case "146":
+                    text = "Science 1 room 146";
+                    image='<img src="./floorplans/sci1-146.jpg"></img>';
+                    break; 
+                    case "147":
+                    text = "Science 1 room 147";
+                    image='<img src="./floorplans/sci1-147.jpg"></img>';
+                    break; 
+                    case "148":
+                    text = "Science 1 room 148";
+                    image='<img src="./floorplans/sci1-148.jpg"></img>';
+                    break; 
+                    case "149":
+                    text = "Science 1 room 149";
+                    image='<img src="./floorplans/sci1-149.jpg"></img>';
+                    break; 
 
-        default:
-        text = "room not found";
+                default:
+                    text = "room not found";
+                    break;
+            }
         }
-        document.getElementById("floorplantext").innerHTML = text;
-        document.getElementById("floorplanimage").innerHTML = image;
+        else {
+            text="Building not selected";
         }
+            document.getElementById("floorplantext").innerHTML = text;
+            document.getElementById("floorplanimage").innerHTML = image;
+    }
 
         function selection() {
             selectElement = document.querySelector('#select1');
             output = selectElement.options[selectElement.selectedIndex].value;
             document.querySelector('.output').textContent = output;
+            return output;
         }
 
 
@@ -506,7 +999,7 @@ function change() {
             
             map.addControl(controlSearch);*/
 
-            var legend = L.control({ position: 'topright' });
+            /*var legend = L.control({ position: 'topright' });
             legend.onAdd = function (map) {
                 var div = L.DomUtil.create('div', 'info legend');
                 div.innerHTML = '<select id="select1" onchange="selectDestination(this.value);">' +
@@ -569,7 +1062,7 @@ function change() {
                     '</select>';
                 div.firstChild.onmousedown = div.firstChild.ondblclick = L.DomEvent.stopPropagation;
                 return div;
-            };
+            };*/
             legend.addTo(map);
 
             function selectDestination(e) {
@@ -800,18 +1293,12 @@ function change() {
             }
 
 
-
         </script>
         
-<input id="UserInputImage" type="text" placeholder="Enter Room Number"/>
-    <div class='button' onclick="change()">click</div>
 
-    <p> The value of the selected option is:
-        <span class="output"></span>
-    </p>
 
-    <button onclick="selection()">
-        Check option</button>
+    <!--<button onclick="selection()">
+        Check option</button>-->
 
 </body>
 
