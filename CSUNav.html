@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="./leaflet/leaflet.css" />
-    <link rel="stylesheet" href="leaflet-search.min.css"/>
     <link rel="stylesheet" href="./leaflet/plugins/leaflet-routing-machine.css" />
     <link rel="stylesheet" type="text/css"
         href="https://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.5/esri-leaflet-geocoder.css">
@@ -17,83 +16,105 @@
         .leaflet-control-container .leaflet-routing-container-hide {
             display: none;
         }
+        
+        <!-- Map -->
+        #map {
+            width: 100%
+            height: 100%
+        }
+        <! -- Circular Button -->
+        .button {
+        background-color: gray;
+        border: none;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        }
+
+        .cbtn {border-radius:50%;}
 
         < !--Search Bar-->
         .dropbtn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
+        background-color: #4CAF50;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        }
 
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
 
-#myInput {
-  box-sizing: border-box;
-  background-image: url('searchicon.png');
-  background-position: 14px 12px;
-  background-repeat: no-repeat;
-  font-size: 16px;
-  padding: 14px 20px 12px 45px;
-  border: none;
-  border-bottom: 1px solid #ddd;
-}
+        #wrapper {
+            min-height: 100%;
+        }
 
-#myInput:focus {outline: 3px solid #ddd;}
+        #myInput {
+        box-sizing: border-box;
+        background-position: 14px 12px;
+        background-repeat: no-repeat;
+        font-size: 16px;
+        padding: 14px 20px 12px 45px;
+        border: none;
+        border-bottom: 1px solid #ddd;
+        }
 
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
+        #myInput:focus {outline: 3px solid #ddd;}
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f6f6f6;
-  min-width: 230px;
-  overflow: auto;
-  border: 1px solid #ddd;
-  z-index: 1;
-}
+        .dropdown {
+        position: relative;
+        display: inline-block;
+        }
 
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
+        .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f6f6f6;
+        min-width: 230px;
+        overflow: auto;
+        border: 1px solid #ddd;
+        z-index: 1;
+        }
 
-.dropdown a:hover {background-color: #ddd;}
+        .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        }
 
-.show {display: block;}
+        .dropdown a:hover {background-color: #ddd;}
+
+        .show {display: block;}
     </style>
 </head>
 
 <body>
 
     <!-- Page Content -->
-    <div class="w3-padding-large" id="main">
+    <div id="wrapper">
         <!-- Header/Home -->
-        <header class="w3-container w3-padding-18 w3-center w3-blue" id="home">
-            <h1 class="w3-jumbo"><span class="w3-hide-small">CSUNav</span></h1>
+        <header class="w3-container w3-padding-18 w3-center w3-blue" id="wrapper">
+            <h1 class="w3-jumbo"><span>CSUNav</span></h1>
             <p>Interactive Campus Navigation</p>
         </header>
         
-        <div id="map" class="img-responsive map" style="width: 1300px; height: 600px; margin: auto; "></div>
+        <div id="map" class="img-responsive map" style="width: auto; height: 550px; margin: auto; ">
+        </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <script src="./leaflet/leaflet.js"></script>
         <script src="./leaflet/plugins/leaflet-routing-machine.js"></script>
-        <script src="../../leaflet-indoor.js"></script>
-        <script type="text/javascript" src="tabletop.min.js"></script>
         <script src="https://cdn-geoweb.s3.amazonaws.com/esri-leaflet/0.0.1-beta.5/esri-leaflet.js"></script>
-        <script type="text/javascript" src="leaflet-search.min.js"></script>
         <script src="https://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.5/esri-leaflet-geocoder.js"></script>
         <script type="text/javascript">
 
@@ -442,31 +463,32 @@ html, body {
                 map.on('locationfound', onLocationFound);
                 map.on('locationerror', onLocationError);
 
-                // map.locate({setView: true, maxZoom: 16, watch: true});
+                //map.locate({setView: true, maxZoom: 16, watch: true});
                 // wrap map.locate in a function    
-                map.locate({ 
+                /*map.locate({ 
                     watch: true, 
                     setView: false 
-                    });
+                    });*/
+            function locate() {
+            map.locate({ setView: false });
+            }
 
             //}
             //initializeLocate();
             // call locate every 3 seconds... forever
-            //setInterval(locate, 3000);
+            setInterval(locate, 3000);
             //-----------end user location
 
-            /*
-            var searchControl = new L.esri.Controls.Geosearch().addTo(map);
-            var results = new L.LayerGroup().addTo(map);
+            /*var controlSearch = new L.esri.Controls.Geosearch({
+                position:'topright',
+                layer: markersLayer,
+                initial: false,
+                zoom: 17,
+                marker: false,
+                textPlaceholder: 'search...'
+            })
             
-                searchControl.on('results', function(data) {
-                    results.clearLayers();
-                    for (var i = data.results.length - 1; i >= 0; i--) {
-                       //results.addLayer(L.marker(data.results[i].latlng));
-                       results.addLayer(L.marker(data[i].loc));
-                    }
-                }); 
-            */
+            map.addControl(controlSearch);*/
 
             var legend = L.control({ position: 'topright' });
             legend.onAdd = function (map) {
@@ -764,7 +786,7 @@ html, body {
 
 
         </script>
-<div class="dropdown">
+<!--<div class="dropdown">
         <button onclick="myFunction()" class="dropbtn">Dropdown</button>
         <div id="myDropdown" class="dropdown-content">
             <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
@@ -776,31 +798,19 @@ html, body {
             <a href="#support">Support</a>
             <a href="#tools">Tools</a>
         </div>
-        </div>
+        </div>-->
 
-        <script>
-        /* When the user clicks on the button,
-        toggle between hiding and showing the dropdown content */
-        function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
+    <script>
+        function showimage() {
+            var sourceofPicture = "./floorplans/sci3-100.jpg"
+            var img = document.getElementById('bigpic')
+            img.src = sourceofPicture.replace('90x90', '225x225');
+            img.style.display = "block";
         }
-
-        function filterFunction() {
-        var input, filter, ul, li, a, i;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        div = document.getElementById("myDropdown");
-        a = div.getElementsByTagName("a");
-        for (i = 0; i < a.length; i++) {
-            txtValue = a[i].textContent || a[i].innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            a[i].style.display = "";
-            } else {
-            a[i].style.display = "none";
-            }
-        }
-        }
-        </script>
+    </script>
+    <img style="display:none;" id="bigpic" src="bigpic" />
+    <button onclick="showimage()" class="button button1">Press</button> 
+        
 
 </body>
 
