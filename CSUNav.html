@@ -79,7 +79,7 @@
         
         
     <div class="w3-bar w3-gray">
-            <select style="margin: 10px;" id="select1" onchange="selectDestination(this.value);"> +
+            <select style="margin: 10px; float:left;" id="select1" onchange="selectDestination(this.value);"> +
                     <option value="dest">Destination</option>
                     <option value="Administration">Administration</option>
                     <option value="Administration East">Administration East</option>
@@ -137,8 +137,8 @@
                     <option value="Walter Stiern Library">Walter Stiern Library</option>
                     <option value="Well Core Repository">Well Core Repository</option>
                 </select>
-                <div style="float:right" align="right" class='button' onclick="change()">Search</div>
-                <input style="margin: 10px; float:right" id="UserInputImage" type="text" placeholder="Enter Room Number"/>
+                <input style="margin: 10px; float:left" id="UserInputImage" type="text" placeholder="Enter Room Number"/>
+                <div style="float: left; display:block;" class='button' onclick="change()">Search</div>
                 <span class="output"></span>
     </div>
 
