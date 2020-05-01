@@ -77,7 +77,7 @@
             <p>Interactive Campus Navigation</p>
         </header>
         
-        
+     <!-- Drop Down Menu for Buildings -->   
     <div class="w3-bar w3-gray">
             <select style="margin: 10px; float:left;" id="select1" onchange="selectDestination(this.value);"> +
                     <option value="dest">Destination</option>
@@ -142,7 +142,7 @@
                 <span class="output"></span>
     </div>
 
-
+<!-- Code to display the map as well as the default images of the text and floorplan-->
         <div class="row w3-gray">
             <div class="col-sm-6">
                 <div id="map" class="img-responsive map" style="width: auto; height: 550px; margin: auto; ">
@@ -165,11 +165,14 @@
         <script src="https://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.5/esri-leaflet-geocoder.js"></script>
         <script type="text/javascript">
 
+// Function to display floorplans
 function change() {
         var text = "";
         var image = "";
         var answers = document.getElementById("UserInputImage").value;
         var buildingselect = selection();
+        
+        //Science 3 floorplan selector
         if(buildingselect == "Science 3") {
             switch(answers) {
                 case "100":
@@ -469,6 +472,7 @@ function change() {
                     break;
             }
         }
+        //Science 1 floorplan selector
         else if(buildingselect == "Science 1") {
             switch(answers) {
                 case "101a":
@@ -620,6 +624,7 @@ function change() {
             document.getElementById("floorplanimage").innerHTML = image;
     }
 
+// Selects the chosen building from the dropdown menu and then retrieves the GPS coordinates and navigates via Mapbox API
         function selection() {
             selectElement = document.querySelector('#select1');
             output = selectElement.options[selectElement.selectedIndex].value;
@@ -690,7 +695,7 @@ function change() {
             map.setView([35.348601, -119.103359], 17);
 
             L.tileLayer('https://api.mapbox.com/styles/v1/cmcdaniel1204/ck68nao5304yz1iozhsscjjdc/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoiY21jZGFuaWVsMTIwNCIsImEiOiJjazI0dWt3ZGgwOHhlM2NucmRrcWViNzNyIn0.9VI7P_cCB1w9hFBFLiqjCw', {
-
+// Sets boundaries location of the map
             }).addTo(map);
             //northEast = L.latLng(35.3541, -119.0967);
             var southWest = L.latLng(35.3430, -119.1099), northEast = L.latLng(35.3545, -119.0967);
@@ -698,7 +703,7 @@ function change() {
             map.setMaxBounds(bounds);
             //map.on('drag', function() { map.panInsideBounds(bounds, { animate: false }); });
             var markersLayer = new L.LayerGroup();	//layer contain searched elements
-
+// Displays markers and popups for images and locations
             map.addLayer(markersLayer);
 
             var schoolIcon = L.icon({
@@ -749,14 +754,8 @@ function change() {
                 popupAnchor: [3, 120]
             });
 
-            // var disabilityIcon = L.icon({
-            //     iconUrl: 'disability.png',
 
-            //     iconSize: [20, 30],
-            //     iconAnchor: [10,30],
-            //     popupAnchor: [3,-15]
-            // });
-
+            //display building image popups
             var adminimg = '<img src = "./ssimages/Administration.jpg" height="150px" width="150px"/>';
             var admineimg = '<img src = "./ssimages/Administration East.jpg" height="150px" width="150px"/>';
             var adminwimg = '<img src = "./ssimages/Administration West.jpg" height="150px" width="150px"/>';
@@ -818,6 +817,7 @@ function change() {
 
 
 
+            //display markers with custom kcons
             var marker0 = L.marker(data[0].loc, {icon: schoolIcon}).addTo(map);
             var popup0 = marker0.bindPopup('<b> Administration </b>' + '</br >' + adminimg);
             var marker1 = L.marker(data[1].loc, {icon: schoolIcon}).addTo(map);
@@ -938,8 +938,6 @@ function change() {
             //function initializeLocate() {
             var routing = L.Routing.control({
                 waypoints: [null
-                    //L.latLng(current_position.getLatLng()),
-                    //L.latLng(destination),
                 ],
                 router: L.Routing.mapbox('pk.eyJ1IjoiY21jZGFuaWVsMTIwNCIsImEiOiJjazI0dWt3ZGgwOHhlM2NucmRrcWViNzNyIn0.9VI7P_cCB1w9hFBFLiqjCw'),
                 show: false
@@ -972,98 +970,15 @@ function change() {
                 map.on('locationfound', onLocationFound);
                 map.on('locationerror', onLocationError);
 
-                //map.locate({setView: true, maxZoom: 16, watch: true});
-                // wrap map.locate in a function    
-                /*map.locate({ 
-                    watch: true, 
-                    setView: false 
-                    });*/
             function locate() {
             map.locate({ setView: false });
             }
 
-            //}
-            //initializeLocate();
-            // call locate every 3 seconds... forever
+
+            // call locate every 3 seconds
             setInterval(locate, 3000);
             //-----------end user location
 
-            /*var controlSearch = new L.esri.Controls.Geosearch({
-                position:'topright',
-                layer: markersLayer,
-                initial: false,
-                zoom: 17,
-                marker: false,
-                textPlaceholder: 'search...'
-            })
-            
-            map.addControl(controlSearch);*/
-
-            /*var legend = L.control({ position: 'topright' });
-            legend.onAdd = function (map) {
-                var div = L.DomUtil.create('div', 'info legend');
-                div.innerHTML = '<select id="select1" onchange="selectDestination(this.value);">' +
-                    '<option value="dest">Destination</option>' +
-                    '<option value="Administration">Administration</option>' +
-                    '<option value="Administration East">Administration East</option>' +
-                    '<option value="Administration West">Administration West</option>' +
-                    '<option value="Amphitheatre">Amphitheatre</option>' +
-                    '<option value="Business Development Center A">Business Development Center A</option>' +
-                    '<option value="Business Development Center B">Business Development Center B</option>' +
-                    '<option value="Business Development Center C">Business Development Center C</option>' +
-                    '<option value="Business Development Center D">Business Development Center D</option>' +
-                    '<option value="Business Development Center E">Business Development Center E</option>' +
-                    '<option value="Central Plant Operations">Central Plant Operations</option>' +
-                    '<option value="Child Care">Child Care</option>' +
-                    '<option value="ClassRoom Building">ClassRoom Building</option>' +
-                    '<option value="Dore Theatre">Dore Theatre</option>' +
-                    '<option value="Dorothy Donahoe Hall">Dorothy Donahoe Hall</option>' +
-                    '<option value="Education Building">Education Building</option>' +
-                    '<option value="Engineering Modulars">Engineering Modulars</option>' +
-                    '<option value="Facilities">Facilities</option>' +
-                    '<option value="Humanities Complex">Humanities Complex</option>' +
-                    '<option value="Icardo Center">Icardo Center</option>' +
-                    '<option value="J. Antonio Sports Center">J. Antonio Sports Center</option>' +
-                    '<option value="J.R. Hillman Aquatic Center">J.R. Hillman Aquatic Center</option>' +
-                    '<option value="Modular East 3">Modular East 3</option>' +
-                    '<option value="Modular West">Modular West</option>' +
-                    '<option value="Music Building">Music Building</option>' +
-                    '<option value="Parking Lot A">Parking Lot A</option>' +
-                    '<option value="Parking Lot B">Parking Lot B</option>' +
-                    '<option value="Parking Lot C">Parking Lot C</option>' +
-                    '<option value="Parking Lot D">Parking Lot D</option>' +
-                    '<option value="Parking Lot E">Parking Lot E</option>' +
-                    '<option value="Parking Lot F">Parking Lot F</option>' +
-                    '<option value="Parking Lot G">Parking Lot G</option>' +
-                    '<option value="Parking Lot H">Parking Lot H</option>' +
-                    '<option value="Parking Lot I">Parking Lot I</option>' +
-                    '<option value="Parking Lot J">Parking Lot J</option>' +
-                    '<option value="Parking Lot K1">Parking Lot K1</option>' +
-                    '<option value="Parking Lot K2">Parking Lot K2</option>' +
-                    '<option value="Parking Lot K3">Parking Lot K3</option>' +
-                    '<option value="Parking Lot L">Parking Lot L</option>' +
-                    '<option value="Performing Arts">Performing Arts</option>' +
-                    '<option value="Physical Education">Physical Education</option>' +
-                    '<option value="Romberg Nursing Center">Romberg Nursing Center</option>' +
-                    '<option value="Runner Cafe">Runner Cafe</option>' +
-                    '<option value="Science 1">Science 1</option>' +
-                    '<option value="Science 2">Science 2</option>' +
-                    '<option value="Science 3">Science 3</option>' +
-                    '<option value="Student Health Services">Student Health Services</option>' +
-                    '<option value="Student Recreation Center">Student Recreation Center</option>' +
-                    '<option value="Student Services">Student Services</option>' +
-                    '<option value="Student Union">Student Union</option>' +
-                    '<option value="Testing Room">Testing Room</option>' +
-                    '<option value="University Advancement">University Advancement</option>' +
-                    '<option value="University Police">University Police</option>' +
-                    '<option value="Visual Arts">Visual Arts</option>' +
-                    '<option value="Walter Stiern Library">Walter Stiern Library</option>' +
-                    '<option value="Well Core Repository">Well Core Repository</option>' +
-                    '</select>';
-                div.firstChild.onmousedown = div.firstChild.ondblclick = L.DomEvent.stopPropagation;
-                return div;
-            };
-            legend.addTo(map);*/
 
             function selectDestination(e) {
                 switch (e) {
@@ -1294,11 +1209,6 @@ function change() {
 
 
         </script>
-        
-
-
-    <!--<button onclick="selection()">
-        Check option</button>-->
 
 </body>
 
